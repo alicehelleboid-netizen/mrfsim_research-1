@@ -29,4 +29,5 @@ volumes/
 build/
 dist/
 mrfsim.egg-info/
-
+shellscripts/
+shellscripts/run_correct_maps.sh

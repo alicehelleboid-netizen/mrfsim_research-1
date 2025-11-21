@@ -1,7 +1,7 @@
 eval "$(conda shell.bash hook)"
 conda deactivate
 eval "$(conda shell.bash hook)"
-conda activate mrfsim-research-v2
+conda activate mrfsim_research
 
 find $1 -type f -name "*_seqParams.pkl" | while read -r line ; do
     echo "Processing $line"
@@ -38,12 +38,12 @@ find $1 -type f -name "*_seqParams.pkl" | while read -r line ; do
 
         eval "$(conda shell.bash hook)"
         conda deactivate
-        conda activate distortion
+        conda activate distorsion
         gradient_unwarp.py ${filepath}/${filenii} ${filepath}/${filecorrected} siemens -g ../gradunwarp/coeff.grad --fovmin -0.4 --fovmax 0.4 -n
         conda deactivate
 
         eval "$(conda shell.bash hook)"
-        conda activate mrfsim-research-v2
+        conda activate mrfsim_research
 
         python scripts/script_recoInVivo_3D_machines.py convertArrayToImage --filevolume ${filepath}/${filecorrected} --filedico ${filepath}/${filedico} --suffix "_offset" --apply-offset True --nifti True --reorient False
 
@@ -65,12 +65,12 @@ find $1 -type f -name "*_seqParams.pkl" | while read -r line ; do
 
         eval "$(conda shell.bash hook)"
         conda deactivate
-        conda activate distortion
+        conda activate distorsion
         gradient_unwarp.py ${filepath}/${filenii} ${filepath}/${filecorrected} siemens -g ../gradunwarp/coeff.grad --fovmin -0.4 --fovmax 0.4 -n
         conda deactivate
 
         eval "$(conda shell.bash hook)"
-        conda activate mrfsim-research-v2
+        conda activate mrfsim_research
 
         python scripts/script_recoInVivo_3D_machines.py convertArrayToImage --filevolume ${filepath}/${filecorrected} --filedico ${filepath}/${filedico} --suffix "_offset" --apply-offset True --nifti True --reorient False
 
