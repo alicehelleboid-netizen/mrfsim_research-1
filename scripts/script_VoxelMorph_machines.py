@@ -13,7 +13,8 @@ print(tf.config.experimental.list_physical_devices("GPU"))
 # local imports
 import voxelmorph as vxm
 import neurite as ne
-from mutools import io
+from mrfsim import io
+
 import matplotlib.pyplot as plt
 try:
     import SimpleITK as sitk
@@ -33,7 +34,7 @@ from keras import backend
 
 import machines as ma
 from machines import Toolbox
-
+import subprocess
 
 def get_total_memory_mb():
     result = subprocess.check_output(

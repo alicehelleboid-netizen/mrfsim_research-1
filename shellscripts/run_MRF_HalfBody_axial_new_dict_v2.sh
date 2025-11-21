@@ -113,17 +113,17 @@ done
 
 
 
-# echo "######################################################"
-# echo "Generating whole-body maps"
-# echo "######################################################"
-# echo "Correcting maps for distortion and applying offset"
+echo "######################################################"
+echo "Generating whole-body maps"
+echo "######################################################"
+echo "Correcting maps for distortion and applying offset"
 
-# sh shellscripts/run_correct_maps.sh ${targetfolder}
+sh shellscripts/run_correct_maps.sh ${targetfolder}
 
 echo "######################################################"
 echo "Creating whole-body FF and T1H2O maps"
-python scripts/script_recoInVivo_3D_machines.py concatenateVolumes --folder ${targetfolder} --key "wT1" --overlap 0.0,0.0,50.0 --spacing 1,1,5
-python scripts/script_recoInVivo_3D_machines.py concatenateVolumes --folder ${targetfolder} --key "ff" --overlap 0.0,0.0,50.0 --spacing 1,1,5
+python scripts/script_recoInVivo_3D_machines.py concatenateVolumes --folder ${targetfolder} --key "wT1" --overlap 0.0,0.0,50.0
+python scripts/script_recoInVivo_3D_machines.py concatenateVolumes --folder ${targetfolder} --key "ff" --overlap 0.0,0.0,50.0
 
 sh shellscripts/generate_MRF_HalfBody_synth_volumes.sh ${1} ${targetfolder}
 
@@ -132,3 +132,5 @@ echo "######################################################"
 copyfolder=$(echo ${1} | sed 's/2_Data_Raw/3_Data_Processed/')
 echo "Moving results to ${copyfolder}"
 mv ${targetfolder}/* ${copyfolder}
+
+# test

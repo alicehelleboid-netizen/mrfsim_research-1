@@ -4979,7 +4979,7 @@ def mrf_gendict(dest,folder,seqfile,dictconf,dictconf_light,datafile,wait_time,e
 
 @ma.machine()
 @ma.parameter("filemap", str, default=None, description="MRF maps (.pkl)")
-@ma.parameter("fileseq", str, default="./dico/mrf_sequence_adjusted.json", description="Sequence File")
+@ma.parameter("fileseq", str, default=None, description="Sequence File")
 @ma.parameter("spacing", [float,float,float], default=[1,1,5], description="Voxel size")
 @ma.parameter("reorient", bool, default=True, description="Reorient to match usual orientation")
 @ma.parameter("filename", str, default=None, description=".dat file for adding geometry if necessary")
@@ -4990,8 +4990,14 @@ def generate_dixon_volumes_for_segmentation(filemap,fileseq,spacing,reorient,fil
     if filename is not None :
         reorient=False
 
-    with open(fileseq) as f:
-        sequence_config = json.load(f)
+    if fileseq is not None:
+        with open(fileseq) as f:
+            sequence_config = json.load(f)
+
+    else:
+        sequence_config={}
+        sequence_config["TI"]=8.32
+        sequence_config["FA"]=5
 
     sequence_config["TE"]=[2.39,3.45]
     if t1_weighted:
